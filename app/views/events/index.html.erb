@@ -21,11 +21,10 @@
         <td><%= event.content %></td>
         <td><%= event.schedule_at %></td>
         <td><%= event.place %></td>
-        <td><%= event.user %></td>
+        <td><%= event.user_id %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <a href="<%= event_path(event.id)%>" class=" btn btn-primary" style="color :black">Lire plus</a>
       </tr>
     <% end %>
   </tbody>
