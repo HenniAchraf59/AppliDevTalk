@@ -33,11 +33,7 @@ ActiveRecord::Schema.define(version: 20170502094154) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "user_name"
-<<<<<<< HEAD
     t.string   "username"
-=======
->>>>>>> develop
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,11 +50,8 @@ ActiveRecord::Schema.define(version: 20170502094154) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "user_id"
-    t.string   "user_name"
-<<<<<<< HEAD
     t.string   "username"
-=======
->>>>>>> develop
+
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
