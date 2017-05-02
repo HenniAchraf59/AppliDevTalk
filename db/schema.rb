@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502114703) do
+ActiveRecord::Schema.define(version: 20170502124553) do
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170502114703) do
     t.integer  "user_id"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
+    t.string   "username"
     t.index ["user_id"], name: "index_events_on_user_id", using: :btree
   end
 
@@ -28,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170502114703) do
     t.integer  "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "user_name"
     t.string   "username"
   end
 
@@ -44,8 +46,9 @@ ActiveRecord::Schema.define(version: 20170502114703) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "username"
     t.string   "user_id"
+    t.string   "user_name"
+    t.string   "username"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
