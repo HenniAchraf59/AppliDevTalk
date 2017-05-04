@@ -10,25 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170502153223) do
+ActiveRecord::Schema.define(version: 20170504125447) do
+
+  create_table "event_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "event_id"
+    t.integer  "user_id"
+    t.boolean  "presence"
+    t.boolean  "organizer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_event_users_on_event_id", using: :btree
+    t.index ["user_id"], name: "index_event_users_on_user_id", using: :btree
+  end
 
   create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
-    t.string   "content"
-    t.datetime "schedule_at"
-    t.string   "place"
-    t.integer  "user_id"
-    t.string   "username"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "registers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "username"
+    t.text     "content",      limit: 65535
+    t.datetime "scheduled_at"
+    t.text     "place",        limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -44,10 +45,11 @@ ActiveRecord::Schema.define(version: 20170502153223) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "user_id"
-    t.string   "username"
+    t.boolean  "admin"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "event_users", "events"
+  add_foreign_key "event_users", "users"
 end
